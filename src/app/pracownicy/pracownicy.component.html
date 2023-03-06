@@ -1,0 +1,50 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Lista pracowników</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-selection-list
+      multiple="false" 
+      [(ngModel)]="wybranyPracownik"
+      (selectionChange)="WybierzPracownika()">
+
+      <mat-list-option 
+        *ngFor="let pracownik of pracownicy; index as index"
+        [value]="pracownik"
+        [style]="'height:100px'">
+
+        <mat-grid-list cols="12" [rowHeight]="'2em'" [gutterSize]="'1px'">
+
+          <mat-grid-tile [colspan]="2" [rowspan]="2">
+            {{ pracownik.imie[0] + pracownik.nazwisko[0] | uppercase }}
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="5" [rowspan]="1">
+            <p>
+              {{ pracownik.imie | uppercase }}
+              {{ pracownik.nazwisko | uppercase }}
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="5" [rowspan]="1">
+            <p>Zadania:</p>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="5" [rowspan]="1">
+            <p>###</p>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="5" [rowspan]="1">
+            <p>
+              [  {{ pracownik.zadania.length }} ]
+            </p>
+          </mat-grid-tile>
+        
+        </mat-grid-list>
+      </mat-list-option>
+
+    </mat-selection-list>
+  </mat-card-content>
+  
+  <mat-card-actions align="end">
+    <button mat-fab color="primary" (click)="openDialog()"> 
+      <mat-icon class="mat-18" fontIcon="add">Add</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
